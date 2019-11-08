@@ -12,7 +12,7 @@ public class ConsolePageData {
     @DataProvider
     public static Object[][] validLoginUsernamePasswordAndPageTitle() {
         return new Object[][]{
-                {"testuser", "testuser", "omni:us", "omni:us"}
+                {"testuser", "testuser", "omni:us"}
         };
     }
 }
