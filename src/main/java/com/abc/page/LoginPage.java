@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends TestBase {
 
-    //Initializing the Page Elements with Constructor
     public LoginPage() {
         PageFactory.initElements(driver, this);
     }
@@ -36,15 +35,20 @@ public class LoginPage extends TestBase {
      * Methods : Actions of Login Page
      ***********************************/
 
+    public String getPageTitle() {
+        TestUtil.waitForVisibilityOfElement(driver, loginPageTitle);
+        return driver.getTitle();
+    }
+
     public void setUsername(String username) {
-        TestUtil.sendKeysToTextBox(driver,usernameField,username);
+        TestUtil.sendKeysToTextBox(driver, usernameField, username);
     }
 
     public void setPassword(String password) {
-        TestUtil.sendKeysToTextBox(driver,passwordField,password);
+        TestUtil.sendKeysToTextBox(driver, passwordField, password);
     }
 
-    public ConsolePage clickLoginButton(){
+    public ConsolePage clickLoginButton() {
         TestUtil.waitForVisibilityOfElement(driver, loginBtn);
         loginBtn.click();
         return new ConsolePage();
