@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TestUtil {
+import static com.abc.util.Constant.LONG_PAGE_LOAD_TIMEOUT;
+import static com.abc.util.Constant.PAGE_LOAD_TIMEOUT;
 
-    public static long PAGE_LOAD_TIMEOUT = 15;
-    public static long IMPLICIT_WAIT = 10;
+public class TestUtil {
 
     /**********************************************
      * Explicit Wait for visibility of an element
@@ -34,5 +34,18 @@ public class TestUtil {
     public static void sendKeysToTextBox(WebDriver driver, WebElement element, String keys) {
         waitForVisibilityOfElement(driver, element);
         element.sendKeys(keys);
+    }
+
+    /**********************************************
+     * Explicit Wait for visibility of an element
+     *
+     * @param driver - WebDriver instance
+     * @param element - Element to be Displayed
+     * @param timeout - Explicit wait Timeout
+     **********************************************/
+
+    public static void waitForVisibilityOfElement(WebDriver driver, WebElement element, long timeout) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, timeout);
+        explicitWait.until(ExpectedConditions.visibilityOf(element));
     }
 }
