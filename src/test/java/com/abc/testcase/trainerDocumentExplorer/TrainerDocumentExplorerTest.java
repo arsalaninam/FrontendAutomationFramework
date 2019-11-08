@@ -61,6 +61,38 @@ public class TrainerDocumentExplorerTest extends TestBase {
      * - Then User is navigated to Console Page successfully.
      * - When User click on Annotation icon on Console Page.
      * - Then User is navigated to Trainer Document Explorer Page successfully.
+     *
+     * @param username - A valid Username
+     * @param password - A valid Password
+     * @param expectedConsoleHeading - Console Page Heading
+     * @param expectedDocumentExplorerHeading - Trainer Document Explorer Page Heading
+     ***********************************************************************************/
+
+    @Test(dataProvider = "validUsernamePasswordAndPageHeadings",
+            dataProviderClass = TrainerDocumentExplorerData.class)
+    public void testUserNavigatesToTrainerDocumentExplorerPage(String username, String password,
+                                                               String expectedConsoleHeading,
+                                                               String expectedDocumentExplorerHeading) {
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
+        ConsolePage consolePage = loginPage.clickLoginButton();
+        String actualConsolePageHeading = consolePage.getPageHeading();
+        softAssert.assertEquals(actualConsolePageHeading, expectedConsoleHeading);
+
+        TrainerDocumentExplorerPage trainerDocumentExplorerPage = consolePage.clickOnAnnotateIcon();
+        String actualDocumentExplorerPageHeading = trainerDocumentExplorerPage.getPageHeading();
+        softAssert.assertEquals(actualDocumentExplorerPageHeading, expectedDocumentExplorerHeading);
+
+        softAssert.assertAll();
+    }
+
+
+    /***********************************************************************************
+     * Test scenario:
+     * - When User enters valid credentials to Login to application successfully.
+     * - Then User is navigated to Console Page successfully.
+     * - When User click on Annotation icon on Console Page.
+     * - Then User is navigated to Trainer Document Explorer Page successfully.
      * - When User adds a new collection and adds a new document of pdf Type.
      * - Then validate that new document is added successfully.
      *
@@ -71,7 +103,8 @@ public class TrainerDocumentExplorerTest extends TestBase {
      ***********************************************************************************/
 
     @Test(dataProvider = "validUsernamePasswordAndPageHeadings",
-            dataProviderClass = TrainerDocumentExplorerData.class)
+            dataProviderClass = TrainerDocumentExplorerData.class,
+            dependsOnMethods = "testUserNavigatesToTrainerDocumentExplorerPage")
     public void testUploadPdfFileType(String username, String password,
                                       String expectedConsoleHeading,
                                       String expectedDocumentExplorerHeading) {
@@ -112,7 +145,8 @@ public class TrainerDocumentExplorerTest extends TestBase {
      ***********************************************************************************/
 
     @Test(dataProvider = "validUsernamePasswordAndPageHeadings",
-            dataProviderClass = TrainerDocumentExplorerData.class)
+            dataProviderClass = TrainerDocumentExplorerData.class,
+            dependsOnMethods = "testUserNavigatesToTrainerDocumentExplorerPage")
     public void testUploadJpgFileType(String username, String password,
                                       String expectedConsoleHeading,
                                       String expectedDocumentExplorerHeading) {
@@ -153,7 +187,8 @@ public class TrainerDocumentExplorerTest extends TestBase {
      ***********************************************************************************/
 
     @Test(dataProvider = "validUsernamePasswordAndPageHeadings",
-            dataProviderClass = TrainerDocumentExplorerData.class)
+            dataProviderClass = TrainerDocumentExplorerData.class,
+            dependsOnMethods = "testUserNavigatesToTrainerDocumentExplorerPage")
     public void testUploadPngFileType(String username, String password,
                                       String expectedConsoleHeading,
                                       String expectedDocumentExplorerHeading) {
@@ -193,8 +228,11 @@ public class TrainerDocumentExplorerTest extends TestBase {
      * @param expectedDocumentExplorerHeading - Trainer Document Explorer Page Heading
      ***********************************************************************************/
 
-    @Test(dataProvider = "validUsernamePasswordAndPageHeadings", dataProviderClass = TrainerDocumentExplorerData.class)
-    public void testUploadTiffFileType(String username, String password, String expectedConsoleHeading,
+    @Test(dataProvider = "validUsernamePasswordAndPageHeadings",
+            dataProviderClass = TrainerDocumentExplorerData.class,
+            dependsOnMethods = "testUserNavigatesToTrainerDocumentExplorerPage")
+    public void testUploadTiffFileType(String username, String password,
+                                       String expectedConsoleHeading,
                                        String expectedDocumentExplorerHeading) {
         int number = gen();
         String collectionName = TEST_PREFIX + number;
