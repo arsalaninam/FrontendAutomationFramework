@@ -1,6 +1,5 @@
 package com.abc.base;
 
-import com.abc.util.TestUtil;
 import com.abc.util.WebEventListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +13,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import static com.abc.util.Constant.IMPLICIT_WAIT;
+import static com.abc.util.Constant.PAGE_LOAD_TIMEOUT;
 
 public class TestBase {
 
@@ -60,8 +62,8 @@ public class TestBase {
 
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         driver.get(properties.getProperty("url"));
     }
 }
