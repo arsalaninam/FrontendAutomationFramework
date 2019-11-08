@@ -51,6 +51,12 @@ Run the following command in Terminal to execute tests.
 $ mvn clean test
 ```
 
+Or Run the following command in Terminal to execute tests with testng.xml
+
+```sh
+$ mvn clean test -DsuiteXmlFile=testng.xml
+```
+
 ### Test Report
 
 You can find the Surefire HTML reports in the following directory of the Project.
