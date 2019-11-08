@@ -15,7 +15,15 @@ This Framework is designed for UI Testing of Web Applications using Java with Se
 * [Maven](https://maven.apache.org/download.cgi) - Dependency Manager
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download) - IDE
 
+## Prerequisite to Execute Tests
+
+* Make sure to download all the sample files from "documents" directory placed in root of this repository. 
+* Download all the sample files in your local machine and place all the files in "F:\" Directory in your local disk. 
+* Make sure to set the correct absolute path of all the files in Constants interface. The absolute path is responsible to upload the respective file in test case. So if the test case is not able to find the correct required absolute path, then the test case will fail.
+
 ## Project Structure
+
+>documents: This directory contains all sample files to download in F:\ directory of your local machine
 
 >base: This package base test class
 
@@ -49,6 +57,12 @@ Run the following command in Terminal to execute tests.
 
 ```sh
 $ mvn clean test
+```
+
+Or Run the following command in Terminal to execute tests with testng.xml
+
+```sh
+$ mvn clean test -DsuiteXmlFile=testng.xml
 ```
 
 ### Test Report
