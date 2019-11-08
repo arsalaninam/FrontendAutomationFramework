@@ -4,7 +4,7 @@
         <classes>
             <class name="com.abc.testcase.console.ConsoleTest"/>
             <class name="com.abc.testcase.login.LoginTest"/>
-            <!--<class name="com.abc.testcase.trainerDocumentExplorer.TrainerDocumentExplorerTest"/>-->
+            <class name="com.abc.testcase.trainerDocumentExplorer.TrainerDocumentExplorerTest"/>
         </classes>
     </test>
 </suite>
