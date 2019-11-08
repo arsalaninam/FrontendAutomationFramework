@@ -26,8 +26,14 @@ public class LoginPageData {
     @DataProvider
     public static Object[][] invalidLoginUsernamePasswordWithFailMessage() {
         return new Object[][]{
-                {"testuser", "tEstUseR", "Invalid username or password."},
-                {"testuser", "testUser12", "Invalid username or password."},
+                {"testuser", "testUser12", "Invalid username or password."}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] caseSensitiveLoginUsernamePasswordWithFailMessage() {
+        return new Object[][]{
+                {"testuser", "tEstUseR", "Invalid username or password."}
         };
     }
 }
