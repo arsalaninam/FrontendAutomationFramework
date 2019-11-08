@@ -1,14 +1,17 @@
-package com.abc.testcase.Console;
+package com.abc.testcase.console;
 
 import com.abc.base.TestBase;
 import com.abc.data.dataprovider.ConsolePageData;
 import com.abc.page.ConsolePage;
 import com.abc.page.LoginPage;
-import com.abc.page.TrainerDocumentExplorerPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
+
+import static com.abc.util.Constant.TEST_USER_LANDS_ON_CONSOLE_PAGE;
 
 /**
  * Test Class to perform test cases related to Console Page
@@ -17,8 +20,8 @@ import org.testng.asserts.SoftAssert;
  */
 public class ConsoleTest extends TestBase {
 
+    private static final Logger log = LoggerFactory.getLogger(ConsoleTest.class);
     private LoginPage loginPage;
-    private SoftAssert softAssert = new SoftAssert();
 
     ConsoleTest() {
         super();
@@ -32,26 +35,22 @@ public class ConsoleTest extends TestBase {
 
     /******************************************************************************************
      * Test scenario:
-     * - A user logs in successfully
+     * - When A user logs in successfully
      * - Then he successfully lands on Console Page
-     * - When he clicks on Annotation Icon to navigate to Trainer - Document Explorer Page
-     * - Then validate that he is successfully landed on Trainer - Document Explorer Page
      *
      * @param username - A valid username
      * @param password - A valid password
-     * @param consolePageTitle - Title of Console Page
-     * @param trainerDocumentExplorerPageTitle - Title of Trainer Document Explorer Page
+     * @param expectedPageTitle - Title of Console Page
      ******************************************************************************************/
+
     @Test(dataProvider = "validLoginUsernamePasswordAndPageTitle", dataProviderClass = ConsolePageData.class, priority = 1)
-    public void testLoginWithValidCredentials(String username, String password, String consolePageTitle,
-                                              String trainerDocumentExplorerPageTitle) {
+    public void testUserNavigatesToConsolePage(String username, String password, String expectedPageTitle) {
+        log.info(TEST_USER_LANDS_ON_CONSOLE_PAGE);
         loginPage.setUsername(username);
         loginPage.setPassword(password);
         ConsolePage consolePage = loginPage.clickLoginButton();
-        softAssert.assertEquals(consolePage.getPageTitle(), consolePageTitle);
-        TrainerDocumentExplorerPage trainerDocumentExplorerPage = consolePage.clickOnAnnotateIcon();
-        softAssert.assertEquals(trainerDocumentExplorerPage.getPageTitle(), trainerDocumentExplorerPageTitle);
-        softAssert.assertAll();
+        String actualPageTitle = consolePage.getPageTitle();
+        Assert.assertEquals(actualPageTitle, expectedPageTitle);
     }
 
     @AfterMethod
