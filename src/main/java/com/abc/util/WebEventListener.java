@@ -14,6 +14,8 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  *
  * NOTE: Do not call any of these methods, instead these methods will be invoked automatically
  * as an when the action done (click, findBy etc).
+ *
+ * @author Arsalan Inam
  */
 
 public class WebEventListener extends TestBase implements WebDriverEventListener {
