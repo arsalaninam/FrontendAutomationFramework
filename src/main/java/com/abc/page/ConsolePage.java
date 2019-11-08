@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ConsolePage extends TestBase {
 
-    //Initializing the Page Elements with Constructor
     ConsolePage() {
         PageFactory.initElements(driver, this);
     }
@@ -38,7 +37,7 @@ public class ConsolePage extends TestBase {
     @FindBy(xpath = "//a[@href='https://omniustest.omnius.com/engine/ui/import-export']")
     private WebElement engineImportExportIcon;
 
-    @FindBy(xpath = "//chunk[contains(text(),'Trainer')]")
+    @FindBy(xpath = "//chunk[contains(text(),'Console')]")
     private WebElement consolePageHeading;
 
     /**************************************
@@ -48,6 +47,11 @@ public class ConsolePage extends TestBase {
     public String getPageTitle() {
         TestUtil.waitForVisibilityOfElement(driver, consolePageHeading);
         return driver.getTitle();
+    }
+
+    public String getPageHeading() {
+        TestUtil.waitForVisibilityOfElement(driver, consolePageHeading);
+        return consolePageHeading.getText();
     }
 
     public TrainerDocumentExplorerPage clickOnAnnotateIcon() {
