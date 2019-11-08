@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Classes">
+    <test name="Execute All Test Cases">
+        <classes>
+            <class name="com.abc.testcase.console.ConsoleTest"/>
+            <class name="com.abc.testcase.login.LoginTest"/>
+            <!--<class name="com.abc.testcase.trainerDocumentExplorer.TrainerDocumentExplorerTest"/>-->
+        </classes>
+    </test>
+</suite>
