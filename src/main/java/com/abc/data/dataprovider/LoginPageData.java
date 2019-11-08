@@ -10,6 +10,13 @@ import org.testng.annotations.DataProvider;
 public class LoginPageData {
 
     @DataProvider
+    public static Object[][] validLoginPageTitle() {
+        return new Object[][]{
+                {"Log in to omnius"}
+        };
+    }
+
+    @DataProvider
     public static Object[][] validLoginUsernamePasswordWithPageTitle() {
         return new Object[][]{
                 {"testuser", "testuser", "omni:us"}
