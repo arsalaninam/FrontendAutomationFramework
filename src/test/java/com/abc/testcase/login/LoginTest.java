@@ -35,7 +35,8 @@ public class LoginTest extends TestBase {
     }
 
     /*********************************************************************
-     * Test to validate successful login with valid username and password
+     * Test to validate successful login with
+     * - valid username and password
      *
      * @param username - username test data
      * @param password - password test data
@@ -54,7 +55,6 @@ public class LoginTest extends TestBase {
     /*************************************************************************
      * Test to validate unsuccessful login with
      * - invalid username and invalid password
-     * - case sensitive username and password
      *
      * @param username    - username test data
      * @param password    - password test data
@@ -63,6 +63,25 @@ public class LoginTest extends TestBase {
 
     @Test(dataProvider = "invalidLoginUsernamePasswordWithFailMessage", dataProviderClass = LoginPageData.class)
     public void testUnsuccessfulLogin(String username, String password, String expectedFailMessage) {
+        log.info(TEST_UNSUCCESSFUL_LOGIN);
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
+        loginPage.clickLoginButton();
+        String actualFailMessage = loginPage.getLoginFailMessage();
+        Assert.assertEquals(actualFailMessage, expectedFailMessage);
+    }
+
+    /*************************************************************************
+     * Test to validate unsuccessful login with
+     * - case sensitive username and password
+     *
+     * @param username    - username test data
+     * @param password    - password test data
+     * @param expectedFailMessage - Invalid username or password fail message
+     *************************************************************************/
+
+    @Test(dataProvider = "caseSensitiveLoginUsernamePasswordWithFailMessage", dataProviderClass = LoginPageData.class)
+    public void testUnsuccessfulLoginCaseSensitive(String username, String password, String expectedFailMessage) {
         log.info(TEST_UNSUCCESSFUL_LOGIN);
         loginPage.setUsername(username);
         loginPage.setPassword(password);
