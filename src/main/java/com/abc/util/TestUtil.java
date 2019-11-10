@@ -5,8 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.abc.util.Constant.LONG_PAGE_LOAD_TIMEOUT;
-import static com.abc.util.Constant.PAGE_LOAD_TIMEOUT;
+import static com.abc.constant.Constant.PAGE_LOAD_TIMEOUT;
 
 public class TestUtil {
 
