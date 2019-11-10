@@ -19,7 +19,8 @@ public class LoginPageData {
     @DataProvider
     public static Object[][] validLoginUsernamePasswordWithPageTitle() {
         return new Object[][]{
-                {"testuser", "testuser", "omni:us"}
+                {"testuser", "testuser", "omni:us"},
+                {"tEstUser", "testuser", "omni:us"}
         };
     }
 
@@ -31,7 +32,7 @@ public class LoginPageData {
     }
 
     @DataProvider
-    public static Object[][] caseSensitiveLoginUsernamePasswordWithFailMessage() {
+    public static Object[][] loginUsernameCaseSensitivePasswordWithFailMessage() {
         return new Object[][]{
                 {"testuser", "tEstUseR", "Invalid username or password."}
         };
