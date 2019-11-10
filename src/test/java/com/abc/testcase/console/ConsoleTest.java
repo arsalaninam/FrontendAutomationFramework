@@ -11,7 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.abc.util.Constant.TEST_USER_LANDS_ON_CONSOLE_PAGE;
+import static com.abc.constant.Constant.TEST_USER_LANDS_ON_CONSOLE_PAGE;
 
 /**
  * Test Class to perform test cases related to Console Page
@@ -22,10 +22,6 @@ public class ConsoleTest extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(ConsoleTest.class);
     private LoginPage loginPage;
-
-    ConsoleTest() {
-        super();
-    }
 
     @BeforeMethod
     public void setUp() {
