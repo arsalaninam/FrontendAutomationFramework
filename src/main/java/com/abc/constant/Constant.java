@@ -5,7 +5,7 @@ public interface Constant {
     long IMPLICIT_WAIT = 10;
     long PAGE_LOAD_TIMEOUT = 15;
     long LONG_PAGE_LOAD_TIMEOUT = 50;
-    long LONGEST_PAGE_LOAD_TIMEOUT = 90;
+    long LONGEST_PAGE_LOAD_TIMEOUT = 95;
 
     String TEST_PREFIX = "Testing";
 
