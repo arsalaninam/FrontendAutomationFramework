@@ -1,4 +1,4 @@
-package com.abc.util;
+package com.abc.constant;
 
 public interface Constant {
 
@@ -13,7 +13,7 @@ public interface Constant {
     String JPG_FILE_PATH = "F:\\JpgSampleFile.jpg";
     String PNG_FILE_PATH = "F:\\PngSampleFile.png";
     String TIFF_FILE_PATH = "F:\\TiffSampleFile.TIFF";
-    String TXT_FILE_PATH = "F:\\PdfSampleFile.pdf";
+    String TXT_FILE_PATH = "F:\\TxtSampleFile.txt";
 
     String TEST_SUCCESSFUL_LOGIN = "--Test Login is Successful--";
     String TEST_UNSUCCESSFUL_LOGIN = "--Test Login is Unsuccessful--";
