@@ -3,14 +3,15 @@ package com.abc.page;
 import com.abc.base.TestBase;
 import com.abc.util.TestUtil;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static com.abc.util.Constant.LONGEST_PAGE_LOAD_TIMEOUT;
-import static com.abc.util.Constant.LONG_PAGE_LOAD_TIMEOUT;
+import static com.abc.constant.Constant.LONGEST_PAGE_LOAD_TIMEOUT;
+import static com.abc.constant.Constant.LONG_PAGE_LOAD_TIMEOUT;
 
 public class TrainerDocumentExplorerPage extends TestBase {
 
@@ -51,6 +52,15 @@ public class TrainerDocumentExplorerPage extends TestBase {
 
     @FindBy(xpath = "//chunk[contains(text(),'failed')]")
     private WebElement fileUploadFailedMessage;
+
+    @FindBy(xpath = "//chunk[contains(text(),'finished uploading')]")
+    private WebElement fileUploadFinishedMessageIcon;
+
+    @FindBy(xpath = "//succeeded[contains(text(),'Succeeded')]")
+    private WebElement fileUploadFinishedSucceededMessage;
+
+    @FindBy(xpath = "//rejected[contains(text(),'Rejected (because of type)')]")
+    private WebElement fileUploadFinishedRejectedMessage;
 
     @FindAll({
             @FindBy(className = "picnicTableReactiveRows")
@@ -113,14 +123,28 @@ public class TrainerDocumentExplorerPage extends TestBase {
         fileUpload.sendKeys(path);
     }
 
-    public boolean checkFileUploadSuccessfullyIsDisplayed() {
+    public boolean fileUploadSuccessfullyIsDisplayed() {
         TestUtil.waitForVisibilityOfElement(driver, fileUploadSuccessfulGreenCheck, LONG_PAGE_LOAD_TIMEOUT);
         return fileUploadSuccessfulGreenCheck.isDisplayed();
     }
 
-    public boolean checkFileUploadFailedIsDisplayed() {
+    public boolean fileUploadFailedIsDisplayed() {
         TestUtil.waitForVisibilityOfElement(driver, fileUploadFailedMessage, LONGEST_PAGE_LOAD_TIMEOUT);
         return fileUploadFailedMessage.isDisplayed();
+    }
+
+    public boolean fileTypeAcceptedSuccessfullyMessageDisplayed() {
+        TestUtil.waitForVisibilityOfElement(driver, fileUploadFinishedMessageIcon);
+        Actions action = new Actions(driver);
+        action.moveToElement(fileUploadFinishedMessageIcon).build().perform();
+        return fileUploadFinishedSucceededMessage.isDisplayed();
+    }
+
+    public boolean fileTypeRejectedMessageDisplayed() {
+        TestUtil.waitForVisibilityOfElement(driver, fileUploadFinishedMessageIcon);
+        Actions action = new Actions(driver);
+        action.moveToElement(fileUploadFinishedMessageIcon).build().perform();
+        return fileUploadFinishedRejectedMessage.isDisplayed();
     }
 
     public boolean checkFileUploadProblemIsDisplayed() {
