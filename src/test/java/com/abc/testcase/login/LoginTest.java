@@ -11,7 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.abc.util.Constant.*;
+import static com.abc.constant.Constant.*;
 
 /**
  * Test Class to perform test cases related to Login Page
@@ -23,10 +23,6 @@ public class LoginTest extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     private LoginPage loginPage;
-
-    LoginTest() {
-        super();
-    }
 
     @BeforeMethod
     public void setUp() {
@@ -73,14 +69,15 @@ public class LoginTest extends TestBase {
 
     /*************************************************************************
      * Test to validate unsuccessful login with
-     * - case sensitive username and password
+     * - valid username
+     * - case sensitive password
      *
      * @param username    - username test data
      * @param password    - password test data
      * @param expectedFailMessage - Invalid username or password fail message
      *************************************************************************/
 
-    @Test(dataProvider = "caseSensitiveLoginUsernamePasswordWithFailMessage", dataProviderClass = LoginPageData.class)
+    @Test(dataProvider = "loginUsernameCaseSensitivePasswordWithFailMessage", dataProviderClass = LoginPageData.class)
     public void testUnsuccessfulLoginCaseSensitive(String username, String password, String expectedFailMessage) {
         log.info(TEST_UNSUCCESSFUL_LOGIN);
         loginPage.setUsername(username);
